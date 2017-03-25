@@ -1,0 +1,28 @@
+@import './partials/reset.scss';
+
+#kanban-board {
+  border: 2px black solid;
+  height: 100%;
+}
+
+#queue-column-box {
+  border: 2px green solid;
+  width: 30%;
+  display: inline-block;
+}
+
+#progress-column-box {
+  border: 2px orange solid;
+  width: 30%;
+  display: inline-block;
+}
+
+#finished-column-box {
+  border: 2px blue solid;
+  width: 30%;
+  display: inline-block;
+}
+
+.card-box {
+  border: 1px red solid;
+}
