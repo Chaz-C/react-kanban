@@ -10,14 +10,16 @@ import FinishedColumn from '../../components/FinishedColumn';
 //REQUESTS
 import newCardReq from '../../lib/newCardReq';
 import editStatusReq from '../../lib/editStatusReq';
-import queueReq from '../../lib/queueReq';
-import finishedReq from '../../lib/finishedReq';
-import inProgressReq from '../../lib/inProgressReq';
+// import queueReq from '../../lib/queueReq';
+// import finishedReq from '../../lib/finishedReq';
+// import inProgressReq from '../../lib/inProgressReq';
 
 import allCardsReq from '../../lib/allCardsReq';
 
 
 //REDUX STUFF
+import { addCard } from '../../redux/actions';
+import { connect } from 'react-redux';
 
 
 class App extends Component {
@@ -33,11 +35,20 @@ class App extends Component {
     this.editCard = this.editCard.bind(this);
   }
 
+  // componentWillMount() {
+  //   allCardsReq()
+  //   .then( results => {
+  //     this.setState( {
+  //       cards : results
+  //     });
+  //   });
+  // }
+
   componentWillMount() {
     allCardsReq()
     .then( results => {
-      this.setState( {
-        cards : results
+      results.forEach( card => {
+        this.props.onAddCard(card.title, card.priority, card.createdBy, card.assignedTo, card.id, card.status);
       });
     });
   }
@@ -66,20 +77,39 @@ class App extends Component {
 
 
   render() {
+    // console.log(this.props.cards);
     return (
       <div id="main-container">
         <h1>Friggen React Kanban</h1>
         <NewCardForm addCard={this.addCard} />
         <div id="kanban-board">
-          <QueueColumn cards={this.state.cards} editCard={this.editCard} />
-          <InProgressColumn cards={this.state.cards} editCard={this.editCard} />
-          <FinishedColumn cards={this.state.cards} editCard={this.editCard} />
+          <QueueColumn cards={this.props.cards} editCard={this.editCard} />
+          <InProgressColumn cards={this.props.cards} editCard={this.editCard} />
+          <FinishedColumn cards={this.props.cards} editCard={this.editCard} />
         </div>
       </div>
     );
   }
 }
 
-export default App;
+// export default App;
 
+const mapStateToProps = (state) => {
+  return {
+    cards: state.cards
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onAddCard: (title, priority, createdBy, assignedTo, id, status) => {
+      dispatch(addCard(title, priority, createdBy, assignedTo, id, status));
+    }
+  }
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
 
