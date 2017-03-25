@@ -10,9 +10,6 @@ import FinishedColumn from '../../components/FinishedColumn';
 //REQUESTS
 import newCardReq from '../../lib/newCardReq';
 import editStatusReq from '../../lib/editStatusReq';
-// import queueReq from '../../lib/queueReq';
-// import finishedReq from '../../lib/finishedReq';
-// import inProgressReq from '../../lib/inProgressReq';
 
 import allCardsReq from '../../lib/allCardsReq';
 
@@ -47,7 +44,6 @@ class App extends Component {
   addCard(card) {
     newCardReq(card)
     .then( ({title, priority, createdBy, assignedTo, id, status}) => {
-      // console.log('--FROM REACT---', results);
       this.props.onAddCard(title, priority, createdBy, assignedTo, id, status)
     });
   }

@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 
-// const db = require('../../models');
-// const { Card } = db;
-// import db from '../../models';
-
 class NewCardForm extends Component {
   constructor(props) {
     super(props);
@@ -28,14 +24,6 @@ class NewCardForm extends Component {
 
     event.preventDefault();
     const form = document.getElementById("newCard");
-
-
-    // this.props.addCard( {
-    //   title: form.elements.title.value,
-    //   priority: form.elements.priority.value,
-    //   createdBy: form.elements.createdBy.value,
-    //   assignedTo: form.elements.assignedTo.value
-    // });
 
     this.props.addCard( {
       title: this.state.title,

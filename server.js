@@ -13,15 +13,6 @@ const { Card } = db;
 app.use(bodyParser.urlencoded( { extended : true } ) );
 app.use(methodOverride('_method'));
 
-// app.use(function(req, res, next) {
-//   console.log('---middle---', req.body);
-//   res.setHeader("Content-Type", "application/json");
-//   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-//   next();
-// });
-
-
-
 app.use('/api/cards', cardsRoute);
 
 app.use(function(req, res, next) {

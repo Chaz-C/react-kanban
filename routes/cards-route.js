@@ -4,15 +4,9 @@ const app = express();
 
 //Lib modules
 
-
 //Data base stuff
 const db = require('../db/models');
 const { Card } = db;
-
-//ROUTES
-router.get('/', (req, res) => {
-  res.send('hi');
-});
 
 //POST ROUTE
 router.post('/newcard', (req, res) => {
@@ -27,8 +21,6 @@ router.post('/newcard', (req, res) => {
     status: 'queue'
   })
   .then( results => {
-    console.log("card created");
-    // console.log(results.dataValues);
     res.send(results);
   });
 });
@@ -51,43 +43,6 @@ router.put('/editstatus', (req, res) => {
   });
 });
 
-
-//GET QUEUE ROUTE
-router.get('/queuecards', (req, res) => {
-  Card.findAll( {
-    where: {
-      status: 'queue'
-    }
-  })
-  .then( results => {
-    res.send(results);
-  });
-});
-
-//GET IN PROGRESS ROUTE
-router.get('/progresscards', (req, res) => {
-  Card.findAll( {
-    where: {
-      status: 'progress'
-    }
-  })
-  .then( results => {
-    res.send(results);
-  });
-});
-
-//GET FINISHED ROUTE
-router.get('/finishedcards', (req, res) => {
-  Card.findAll( {
-    where: {
-      status: 'finished'
-    }
-  })
-  .then( results => {
-    res.send(results);
-  });
-});
-
 //GET ALL CARDS ROUTE
 router.get('/allcards', (req, res) => {
   Card.findAll()
@@ -97,3 +52,42 @@ router.get('/allcards', (req, res) => {
 });
 
 module.exports = router;
+
+
+//KEEPING THESE IN CASE THEY MAKE ME REFACTOR
+
+// //GET QUEUE ROUTE
+// router.get('/queuecards', (req, res) => {
+//   Card.findAll( {
+//     where: {
+//       status: 'queue'
+//     }
+//   })
+//   .then( results => {
+//     res.send(results);
+//   });
+// });
+
+// //GET IN PROGRESS ROUTE
+// router.get('/progresscards', (req, res) => {
+//   Card.findAll( {
+//     where: {
+//       status: 'progress'
+//     }
+//   })
+//   .then( results => {
+//     res.send(results);
+//   });
+// });
+
+// //GET FINISHED ROUTE
+// router.get('/finishedcards', (req, res) => {
+//   Card.findAll( {
+//     where: {
+//       status: 'finished'
+//     }
+//   })
+//   .then( results => {
+//     res.send(results);
+//   });
+// });

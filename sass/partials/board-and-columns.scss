@@ -1,0 +1,23 @@
+#kanban-board {
+  margin-top: 20px;
+  background-color: #323535;
+  border: 1px #A29F9F solid;
+  padding: 15px;
+  height: 900px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+#queue-column-box, #progress-column-box, #finished-column-box {
+  background-color: #A29F9F;
+  flex: 0 1 32%;
+}
+
+
+.column-header {
+  margin: 10px;
+  text-align: center;
+  font-family: 'Coda Caption';
+}

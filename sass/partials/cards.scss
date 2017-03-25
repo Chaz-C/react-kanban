@@ -1,0 +1,24 @@
+//CARDS
+.low-card {
+  background-color: #93C77D;
+}
+
+.medium-card {
+  background-color: #5F9688;
+}
+
+.high-card {
+  background-color: #D98997;
+}
+
+.blocker-card {
+  background-color: #9F3548;
+}
+
+.low-card, .medium-card, .high-card, .blocker-card {
+  font-family: 'Raleway';
+  margin: 10px;
+  border-radius: 10px 10px;
+  padding: 10px;
+  color: white;
+}

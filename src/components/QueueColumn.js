@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import CardFormat from './CardFormat';
 
 class QueueColumn extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
-
   render() {
     return (
       <div id="queue-column-box">

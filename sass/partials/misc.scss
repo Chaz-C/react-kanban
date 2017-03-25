@@ -1,0 +1,27 @@
+body {
+  background-color: #202122;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+input, select {
+  margin-right: 5px;
+}
+
+#new-card-form {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+#page-title {
+  font-family: 'Coda Caption';
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
