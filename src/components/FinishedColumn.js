@@ -9,6 +9,9 @@ class FinishedColumn extends Component {
   render() {
     return (
       <div id="finished-column-box">
+        <div className="column-header">
+          <h2>Finished</h2>
+        </div>
         { this.props.cards
           .filter( card => card.status === 'finished')
           .map( ({ title, priority, createdBy, assignedTo, id, status }) =>

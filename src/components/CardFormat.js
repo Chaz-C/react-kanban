@@ -18,16 +18,16 @@ class CardFormat extends Component {
 
   render() {
     return (
-      <div className="card-box">
-        <h1>title: { this.props.title }</h1>
-        <p>priority: { this.props.priority }</p>
-        <p>created by: { this.props.createdBy }</p>
-        <p>assigned to: { this.props.assignedTo }</p>
+      <div className={ this.props.priority + "-card"}>
+        <p>Title: { this.props.title }</p>
+        <p>Priority: { this.props.priority }</p>
+        <p>Created by: { this.props.createdBy }</p>
+        <p>Assigned to: { this.props.assignedTo }</p>
         <form>
           <select onChange={  this.statusHandler } value={ this.props.status }>
-            <option value="queue">queue</option>
-            <option value="in progress">in progress</option>
-            <option value="finished">finished</option>
+            <option value="queue">Queue</option>
+            <option value="progress">In progress</option>
+            <option value="finished">Finished</option>
           </select>
         </form>
       </div>

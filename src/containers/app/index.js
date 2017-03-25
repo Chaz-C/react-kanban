@@ -18,14 +18,14 @@ import allCardsReq from '../../lib/allCardsReq';
 
 
 //REDUX STUFF
-import { addCard } from '../../redux/actions';
+import { addCard, updateStatus } from '../../redux/actions';
 import { connect } from 'react-redux';
 
 
 class App extends Component {
   constructor() {
     super();
-    this.title = 'title';
+    this.title = 'Friggen React Kanban + Redux';
 
     this.state = {
       cards : []
@@ -34,15 +34,6 @@ class App extends Component {
     this.addCard = this.addCard.bind(this);
     this.editCard = this.editCard.bind(this);
   }
-
-  // componentWillMount() {
-  //   allCardsReq()
-  //   .then( results => {
-  //     this.setState( {
-  //       cards : results
-  //     });
-  //   });
-  // }
 
   componentWillMount() {
     allCardsReq()
@@ -55,33 +46,28 @@ class App extends Component {
 
   addCard(card) {
     newCardReq(card)
-    .then( () => {
-      allCardsReq()
-      .then( results => {
-        this.setState( {
-          cards : results
-        });
-      });
+    .then( ({title, priority, createdBy, assignedTo, id, status}) => {
+      // console.log('--FROM REACT---', results);
+      this.props.onAddCard(title, priority, createdBy, assignedTo, id, status)
     });
   }
 
   editCard(card) {
-    editStatusReq(card);
-    allCardsReq()
-    .then( results => {
-      this.setState( {
-        cards : results
-      });
+    editStatusReq(card)
+    .then( () => {
+      this.props.onUpdateStatus(card.status, card.id);
     });
   }
 
-
   render() {
-    // console.log(this.props.cards);
     return (
       <div id="main-container">
-        <h1>Friggen React Kanban</h1>
-        <NewCardForm addCard={this.addCard} />
+        <div id="page-title">
+          <h1>{ this.title }</h1>
+        </div>
+        <div id="new-card-form">
+          <NewCardForm addCard={this.addCard} />
+        </div>
         <div id="kanban-board">
           <QueueColumn cards={this.props.cards} editCard={this.editCard} />
           <InProgressColumn cards={this.props.cards} editCard={this.editCard} />
@@ -92,7 +78,6 @@ class App extends Component {
   }
 }
 
-// export default App;
 
 const mapStateToProps = (state) => {
   return {
@@ -102,6 +87,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    onUpdateStatus: (status, id) => {
+      dispatch(updateStatus(status, id));
+    },
     onAddCard: (title, priority, createdBy, assignedTo, id, status) => {
       dispatch(addCard(title, priority, createdBy, assignedTo, id, status));
     }

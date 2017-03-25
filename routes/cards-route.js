@@ -26,19 +26,17 @@ router.post('/newcard', (req, res) => {
     assignedTo,
     status: 'queue'
   })
-  .then( () => {
+  .then( results => {
     console.log("card created");
+    // console.log(results.dataValues);
+    res.send(results);
   });
-
-  res.end();
 });
 
 //PUT ROUTE
 router.put('/editstatus', (req, res) => {
   const editCardId = req.body.id;
   const newStatus = req.body.status;
-  console.log('---FROM SERVER---', editCardId);
-  console.log('---FROM SERVER---', newStatus);
 
   Card.update( {
     status : newStatus
@@ -50,9 +48,7 @@ router.put('/editstatus', (req, res) => {
     )
   .then( () => {
     res.end();
-
   });
-
 });
 
 
@@ -72,7 +68,7 @@ router.get('/queuecards', (req, res) => {
 router.get('/progresscards', (req, res) => {
   Card.findAll( {
     where: {
-      status: 'in progress'
+      status: 'progress'
     }
   })
   .then( results => {

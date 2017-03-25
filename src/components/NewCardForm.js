@@ -81,15 +81,15 @@ class NewCardForm extends Component {
   render() {
     return (
       <form id="newCard" onSubmit={this.submitHandler}>
-        <input type="text" placeholder="title" name="title" value={this.state.title} onChange={this.titleValue} />
+        <input type="text" placeholder="Title" name="title" value={this.state.title} onChange={this.titleValue} autoComplete="off" />
         <select name="priority" onChange={this.priorityValue}>
-          <option value="low">low</option>
-          <option value="medium">medium</option>
-          <option value="high">high</option>
-          <option value="blocker">blocker</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+          <option value="blocker">Blocker</option>
         </select>
-        <input type="text" placeholder="created by" name="createdBy" value={this.state.createdBy} onChange={this.createdByValue} />
-        <input type="text" placeholder="assigned to" name="assignedTo" value={this.state.assignedTo} onChange={this.assignedToValue} />
+        <input type="text" placeholder="Created by" name="createdBy" value={this.state.createdBy} onChange={this.createdByValue} autoComplete="off" />
+        <input type="text" placeholder="Assigned to" name="assignedTo" value={this.state.assignedTo} onChange={this.assignedToValue} autoComplete="off" />
         <input type="submit" value="New Card" />
       </form>
     );

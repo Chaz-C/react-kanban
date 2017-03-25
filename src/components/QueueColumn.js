@@ -9,6 +9,9 @@ class QueueColumn extends Component {
   render() {
     return (
       <div id="queue-column-box">
+        <div className="column-header">
+          <h2>In Queue</h2>
+        </div>
         { this.props.cards
           .filter( card => card.status === 'queue')
           .map( ({ title, priority, createdBy, assignedTo, id, status }) =>
