@@ -1,14 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const app = express();
-
-//Lib modules
-
-//Data base stuff
 const db = require('../db/models');
 const { Card } = db;
 
-//POST ROUTE
 router.post('/newcard', (req, res) => {
 
   const { title, priority, createdBy, assignedTo } = req.body;
@@ -25,7 +20,6 @@ router.post('/newcard', (req, res) => {
   });
 });
 
-//PUT ROUTE
 router.put('/editstatus', (req, res) => {
   const editCardId = req.body.id;
   const newStatus = req.body.status;
@@ -43,7 +37,6 @@ router.put('/editstatus', (req, res) => {
   });
 });
 
-//GET ALL CARDS ROUTE
 router.get('/allcards', (req, res) => {
   Card.findAll()
   .then( results => {
@@ -52,7 +45,6 @@ router.get('/allcards', (req, res) => {
 });
 
 module.exports = router;
-
 
 //KEEPING THESE IN CASE THEY MAKE ME REFACTOR
 

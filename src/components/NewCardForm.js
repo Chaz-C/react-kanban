@@ -4,8 +4,6 @@ class NewCardForm extends Component {
   constructor(props) {
     super(props);
 
-    this.postTo = "http://localhost:9000/cards/newcard"
-
     this.state = {
       title: '',
       priority: 'low',

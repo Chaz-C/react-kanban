@@ -2,27 +2,21 @@ import React, { Component } from 'react';
 import '../../../public/css/styles.css';
 
 import NewCardForm from '../../components/NewCardForm';
-
 import QueueColumn from '../../components/QueueColumn';
 import InProgressColumn from '../../components/InProgressColumn';
 import FinishedColumn from '../../components/FinishedColumn';
 
-//REQUESTS
 import newCardReq from '../../lib/newCardReq';
 import editStatusReq from '../../lib/editStatusReq';
-
 import allCardsReq from '../../lib/allCardsReq';
 
-
-//REDUX STUFF
 import { addCard, updateStatus } from '../../redux/actions';
 import { connect } from 'react-redux';
-
 
 class App extends Component {
   constructor() {
     super();
-    this.title = 'Friggen React Kanban + Redux';
+    this.title = 'React Kanban';
 
     this.state = {
       cards : []
@@ -44,7 +38,7 @@ class App extends Component {
   addCard(card) {
     newCardReq(card)
     .then( ({title, priority, createdBy, assignedTo, id, status}) => {
-      this.props.onAddCard(title, priority, createdBy, assignedTo, id, status)
+      this.props.onAddCard(title, priority, createdBy, assignedTo, id, status);
     });
   }
 
@@ -73,7 +67,6 @@ class App extends Component {
     );
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
